@@ -114,10 +114,18 @@ class MockJudge(BaseJudge):
     Useful for testing and development.
     """
     
-    def __init__(self, config: JudgeConfig):
-        """Initialize mock judge."""
+    def __init__(self, config: JudgeConfig, random_seed: Optional[int] = None):
+        """
+        Initialize mock judge.
+        
+        Args:
+            config: Judge configuration
+            random_seed: Optional random seed for reproducibility (None for true randomness)
+        """
         super().__init__(config)
-        random.seed(42)  # For reproducible results
+        # Set random seed if provided (for reproducible testing)
+        if random_seed is not None:
+            random.seed(random_seed)
     
     def judge_pairwise(
         self, prompt: Prompt, response_a: ModelResponse, response_b: ModelResponse

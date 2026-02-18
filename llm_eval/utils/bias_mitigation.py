@@ -35,7 +35,9 @@ class BiasMitigator:
             config: Bias mitigation configuration
         """
         self.config = config
-        random.seed(42)  # For reproducibility; remove in production
+        # Set random seed if configured (for reproducibility in testing)
+        if config.random_seed is not None:
+            random.seed(config.random_seed)
     
     def generate_comparison_pairs(
         self, responses: List[ModelResponse]

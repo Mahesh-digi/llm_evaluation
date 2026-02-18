@@ -28,6 +28,7 @@ class BiasConfig(BaseModel):
     position_bias_correction: bool = Field(True, description="Apply position bias correction")
     length_normalization: bool = Field(True, description="Normalize for length bias")
     num_permutations: int = Field(2, ge=1, description="Number of order permutations")
+    random_seed: Optional[int] = Field(None, description="Random seed for reproducibility (None for true randomness)")
     
 
 class StatisticalConfig(BaseModel):
